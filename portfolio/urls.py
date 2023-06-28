@@ -5,7 +5,7 @@ from .views import (
 )
 
 urlpatterns = [
-    path("user/", user_detail),
+    path("user/<int:id>/", user_detail),
     path('create_user/', create_user),
     path('create_task/', create_task),
     path('create_team/', create_team),

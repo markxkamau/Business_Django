@@ -20,6 +20,18 @@ def create_user(request):
     if request.method == 'POST':
         object = PersonForm(request.POST)
         if object.is_valid():
+            # person.objects.create()
+
+            # Task = task.objects.create(object.user_task)
+
+            # person.user_task.add(Task)
+
+            # Team = team.objects.create(object.user_team)
+
+            # person.user_team.add(Team)
+            # Account = account.objects.create(object.user_account)
+
+            # person.user_account.add(Account)
             person.objects.create(**object.cleaned_data)
         else:
             object = PersonForm()
@@ -29,12 +41,14 @@ def create_user(request):
     return render(request, "User/create_user.html", obj)
 
 
-def user_detail(request):
-    object = person.objects.all()
+def user_detail(request, user_id):
+    object = person.objects.get(id=user_id)
+    task = object.user_task.all()
     obj = {
-        "object": object
+        "object": object,
+        "task": task
     }
-    return render(request, "base.html", obj)
+    return render(request, "User/user_detail.html", obj)
 
 
 def create_task(request):

@@ -13,14 +13,16 @@
   </head>
 
   <body>
-    {% comment %} <div> {% endcomment %}
-      {% block header %}{% include "header.html" %} {% endblock header %}
-      {% block form %}
-        
-        {% endblock form %}
-       {% comment %} {% block main %} {% include "main.html" %}{% endblock main%} {% endcomment %}
-        {% block footer %} {% include "footer.html" %}{% endblock footer %}
-        
-    {% comment %} </div> {% endcomment %}
+    {% comment %}
+    <div>
+      {% endcomment %} 
+      {% block header %}{% include "header.html" %} {% endblock header %} 
+      {% block form %} {% endblock form %} 
+      {% block user_detail %}{% endblock user_detail %} 
+      {% comment %} {% block main %} {% include      "main.html" %}{% endblock main%} {% endcomment %} 
+      {% block footer %} {% include "footer.html" %}{% endblock footer %} 
+      {% comment %}
+    </div>
+    {% endcomment %}
   </body>
 </html>
