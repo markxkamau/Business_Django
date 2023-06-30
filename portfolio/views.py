@@ -41,12 +41,12 @@ def create_user(request):
     return render(request, "User/create_user.html", obj)
 
 
-def user_detail(request, user_id):
-    object = person.objects.get(id=user_id)
-    task = object.user_task.all()
+def user_detail(request, id):
+    object = person.objects.get(id=id)
+    # task = object.user_task.all()
     obj = {
         "object": object,
-        "task": task
+        # "task": task
     }
     return render(request, "User/user_detail.html", obj)
 
