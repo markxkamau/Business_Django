@@ -22,16 +22,16 @@ def create_user(request):
         if object.is_valid():
             # person.objects.create()
 
-            # Task = task.objects.create(object.user_task)
+            # Task = task.objects.create(object.Tasks)
 
-            # person.user_task.add(Task)
+            # person.Tasks.add(Task)
 
-            # Team = team.objects.create(object.user_team)
+            # Team = team.objects.create(object.Team)
 
-            # person.user_team.add(Team)
-            # Account = account.objects.create(object.user_account)
+            # person.Team.add(Team)
+            # Account = account.objects.create(object.Account)
 
-            # person.user_account.add(Account)
+            # person.Account.add(Account)
             person.objects.create(**object.cleaned_data)
         else:
             object = PersonForm()
@@ -44,12 +44,12 @@ def create_user(request):
 def user_detail(request, id):
     object = person.objects.get(id=id)
     tasks = object.Tasks.all()
-    team_data = team.objects.get(id = object.Team.id)
-    team_members = person.objects.filter(Team = team_data)
+    team_data = team.objects.get(id=object.Team.id)
+    team_members = person.objects.filter(Team=team_data)
     obj = {
         "object": object,
         "task": tasks,
-        "team":team_data,
+        "team": team_data,
         "members": team_members
     }
     return render(request, "User/user_detail.html", obj)
@@ -72,7 +72,7 @@ def task_detail(request, id):
     obj = {
         "object": object
     }
-    return render(request, "Task/task_details.html", obj)
+    return render(request, "Task/task_detail.html", obj)
 
 
 def create_team(request):
