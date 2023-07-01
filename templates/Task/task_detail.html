@@ -1,4 +1,5 @@
-{% extends "base.html" %} {% block user_detail %}
+{% extends "base.html" %} 
+{% block task_detail %}
 
 <main class="w-full">
   <div class="border-t-2 border-grey-lighter">
@@ -7,24 +8,18 @@
         <div class="w-1/2 bg-grey">
           <div class="w-96 mx-auto" style="scroll-snap-type: x mandatory">
             <img
-              class="w-full"
-              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.OZDWoC8NUTcFPOr4LzQM_QHaFj%26pid%3DApi%26h%3D160&f=1&ipt=978b778c1929d9321ddaf2e1f77d653dbdbf2897c72e3301a3ecc6fa924db7dd&ipo=images"
+              src="https://images.unsplash.com/photo-1628788835388-415ee2fa9576?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=384&q=80"
               alt="Church's Image"
             />
           </div>
         </div>
         <div class="w-1/2 font-serif">
-          <h1 class="text-5xl font-black-darker font-black">
+          {% comment %} <h1 class="text-5xl font-black-darker font-black">
             {{object.title}}
           </h1>
-          {% for item in task%}
           <p class="text-grey-darker py-4 text-lg leading-normal">
-            {{item.title}}
-          </p>
-          <p class="text-grey-darker py-4 text-sm leading-normal">
-            {{item.content}}
-          </p>
-          {% endfor %}
+            {{task.title}}
+          </p> {% endcomment %}
         </div>
       </div>
     </div>
@@ -36,43 +31,16 @@
           You're in good company
         </h2>
         <p class="text-grey-darker mb-2 font-sans p-4">
-          {% comment %} DJ Profession {% endcomment %} {% comment %} Countless
-          event organizers across the globe have eagerly embraced the expertise
-          of skilled DJs, recognizing the value they bring to party planning and
-          the seamless integration of public address systems. Together, let us
-          revel in the artistry of DJs, as they curate unforgettable
-          experiences, set the mood, and ensure smooth communication, creating
-          moments of joy and celebration for all.
-          <br />Join us as we dance, socialize, and appreciate the remarkable
-          talents of DJs in orchestrating remarkable events. {% endcomment %} 
-          {% comment %} Many music enthusiasts around the world have already
-          embraced the beats and melodies that DJs bring into their lives,
-          accepting the company of fellow partygoers and the energetic
-          atmosphere they create. Let us unite and celebrate the DJ's craft
-          together, dancing and enjoying the music as a vibrant community. 
-          {% endcomment %} 
-          Professionals from various fields all around the world
-          have been embraced by countless individuals who recognize the
-          expertise and contributions they bring into their lives. Whether it be
-          doctors, teachers, engineers, artists, or any other occupation, we
-          acknowledge and appreciate the value they bring to our society. 
-          <br/>Let us come together as a community to honor and recognize the
-          accomplishments of professionals across different domains. Whether
-          they are saving lives, imparting knowledge, building innovative
-          structures, creating beautiful masterpieces, or excelling in any other
-          field, let us celebrate their dedication, passion, and the positive
-          impact they have on our lives. <br/>
-          Join us in expressing our gratitude and admiration for the diverse talents and skills of professionals. Let us
-          come together, support one another, and recognize the collective
-          efforts that shape our world. Together, we can create a society that
-          appreciates and respects the contributions of professionals from all
-          walks of life.
+          Millions of people around the world have already accepted the lord
+          into their lives accepting the company around them and whatever they
+          bring.<br />
+          Let us praise and worship the lord together as a family
         </p>
         <button
           class="py-4 px-8 mt-2 text-sm font-black border border-purple-dark hover:border-purple-darkest text-purple-darker bg-white uppercase rounded font-mono"
         >
           <a
-            href="{% url 'user_detail' id=1 %}"
+            href="https://duckduckgo.com"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -82,30 +50,30 @@
       </div>
       <div class="container mx-auto py-6 border-t-2">
         <h2 class="font-black-darker font-serif text-3xl pt-6">
-          {{team.name}} Members
+          St. Marks Church Mukui Church Leaders
         </h2>
-        {% for item in members %}
+        <!-- <hr> -->
         <div class="flex mt-6">
           <div class="w-1/2 bg-grey">
-            <h3 class="w-96 font-black-darker font-black">{{item.user_name}}</h3>
+            <h3 class="w-96 font-black-darker font-black">Bishop</h3>
             <div class="w-96 mx-auto">
               <img
                 class="h-32 w-32 bg-white p-2 rounded-full"
-                src=""
-                alt="{{item.user_name}}'s Photo"
+                src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
+                alt="Bishop's Photo"
               />
             </div>
           </div>
           <div class="w-1/2 font-serif">
             <p class="text-grey-darker py-4 text-lg leading-normal">
-             {{item.title}}<br/> {{item.Task.content}}
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
+              accusamus accusantium consequatur cumque ea error esse, est id
+              illo nemo nostrum obcaecati odio pariatur perferendis porro quo
+              quos ut velit.
             </p>
           </div>
         </div>
-        {% endfor %}
-        <!-- <hr> -->
-        
-        {% comment %} <div class="flex mt-6">
+        <div class="flex mt-6">
           <div class="w-1/2 font-serif">
             <p class="text-grey-darker py-4 text-lg leading-normal">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
@@ -124,7 +92,28 @@
               />
             </div>
           </div>
-        </div> {% endcomment %}
+        </div>
+        <div class="flex mt-6">
+          <div class="w-1/2 bg-grey">
+            <h3 class="w-96 font-black-darker font-black">People's Rep</h3>
+            <div class="w-96 mx-auto">
+              <img
+                class="h-32 w-32 bg-white p-2 rounded-full"
+                src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
+                alt="People's Rep Photo"
+              />
+            </div>
+          </div>
+          <div class="w-1/2 font-serif">
+            <p class="text-grey-darker py-4 text-lg leading-normal">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
+              accusamus accusantium consequatur cumque ea error esse, est id
+              illo nemo nostrum obcaecati odio pariatur perferendis porro quo
+              quos ut velit.
+            </p>
+          </div>
+        </div>
+      </div>
 
       <div class="flex pt-6 font-serif text-grey-darker">
         <div class="w-1/3 p-6 border-r-2 border-grey-light">
@@ -196,4 +185,4 @@
   </div>
 </main>
 
-{% endblock user_detail %}
+{% endblock task_detail %}

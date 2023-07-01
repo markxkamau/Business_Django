@@ -43,10 +43,14 @@ def create_user(request):
 
 def user_detail(request, id):
     object = person.objects.get(id=id)
-    # task = object.user_task.all()
+    tasks = object.Tasks.all()
+    team_data = team.objects.get(id = object.Team.id)
+    team_members = person.objects.filter(Team = team_data)
     obj = {
         "object": object,
-        # "task": task
+        "task": tasks,
+        "team":team_data,
+        "members": team_members
     }
     return render(request, "User/user_detail.html", obj)
 
@@ -61,6 +65,14 @@ def create_task(request):
         "object": object
     }
     return render(request, "Task/create_task.html", obj)
+
+
+def task_detail(request, id):
+    object = task.objects.get(id=id)
+    obj = {
+        "object": object
+    }
+    return render(request, "Task/task_details.html", obj)
 
 
 def create_team(request):

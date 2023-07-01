@@ -5,19 +5,29 @@ class task(models.Model):
     title = models.CharField(max_length=256, default="default")
     content = models.TextField()
 
+    def __str__(self):
+        return self.title
+
 
 class team(models.Model):
     name = models.TextField()
     image = models.CharField(max_length=256, default="")
 
+    def __str__(self):
+        return self.name
+
 
 class account(models.Model):
+    name = models.TextField()
     youtube = models.URLField(null=True, blank=True)
     twitter = models.URLField(null=True, blank=True)
     tiktok = models.URLField(null=True, blank=True)
     facebook = models.URLField(null=True, blank=True)
     instagram = models.URLField(null=True, blank=True)
     linkedin = models.URLField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class person(models.Model):
@@ -30,9 +40,15 @@ class person(models.Model):
     contact = models.IntegerField()
     location = models.CharField(max_length=20)
     title = models.CharField(max_length=20, default="")
-    user_task = models.ManyToManyField(task, related_name='users', name='Tasks',null=True, blank=True)
-    user_team = models.ForeignKey(team, on_delete=models.CASCADE, name= 'Team', blank=True, null=True)
-    user_account = models.ForeignKey(account, on_delete=models.CASCADE, name='Account', blank=True, null=True)
+    user_task = models.ManyToManyField(
+        task, related_name='users', name='Tasks', null=True, blank=True)
+    user_team = models.ForeignKey(
+        team, on_delete=models.CASCADE, name='Team', blank=True, null=True)
+    user_account = models.ForeignKey(
+        account, on_delete=models.CASCADE, name='Account', blank=True, null=True)
+
+    def __str__(self):
+        return self.title
 
 
 class feedback(models.Model):
@@ -40,6 +56,9 @@ class feedback(models.Model):
     customer_email = models.EmailField()
     subject = models.CharField(max_length=20)
     message = models.TextField()
+
+    def __str__(self):
+        return self.title
 
 
 class person_image(models.Model):

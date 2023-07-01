@@ -1,33 +1,53 @@
 {% block header %}
 <header class="w-full font-sans">
-            <nav class="container mx-auto flex items-center justify-between flex-wrap py-3">
-                <div class="flex items-center flex-no-shrink text-white mr-6">
-                    <h1 class="text-black text-2xl p-2 align-middle font-sans relative pl-8">
-                        <a href="#index.php" class="no-underline text-black">
-                        {{object.user_name}}
-                            {% comment %} <img class="w-7 h-7" src="./Images/Logo.jpg" alt="Church Logo">
-                            St. Marks Church Mukui Parish {% endcomment %}
-                        </a>
-                    </h1>
-                </div>
-                <div class="w-full block text-right flex-grow lg:flex lg:items-center lg:w-auto">
-                    <div class="lg:flex-grow">
-
-                        <a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-grey-dark hover:text-grey-darker no-underline mr-6">
-                            Service
-                        </a>
-                        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-grey-dark hover:text-grey-darker no-underline mr-6">
-                            Community
-                        </a>
-                        <a href="#/About/index.php" class="block mt-4 lg:inline-block lg:mt-0 text-grey-dark hover:text-grey-darker no-underline mr-6">
-                            About Us
-                        </a>
-                        <a href="#/Registry/login.php" class="block mt-4 lg:inline-block lg:mt-0 text-grey-dark hover:text-grey-darker no-underline mr-6">
-                            Contact Us
-                        </a>
-                    </div>
-
-                </div>
-            </nav>
-        </header>
+  <nav
+    class="container mx-auto flex items-center justify-between flex-wrap py-3"
+  >
+    <div class="flex items-center flex-no-shrink text-white mr-6">
+      <h1 class="text-black text-2xl p-2 align-middle font-sans relative pl-8">
+        <a
+          href=" {% url 'user_detail' id=1 %}"
+          class="no-underline text-black flex"
+        >
+          <img
+            class="w-10 h-10 rounded-full"
+            src="https://t4.ftcdn.net/jpg/03/38/76/81/360_F_338768134_wARGJjdmKiUEojFkD4PtsAcBxH6S7fJt.jpg"
+            alt="Company Logo"
+          />
+          <div>{{object.user_name}}</div>
+        </a>
+      </h1>
+    </div>
+    <div
+      class="w-full block text-right flex-grow lg:flex lg:items-center lg:w-auto"
+    >
+      <div class="lg:flex-grow">
+        <a
+          href="#"
+          class="block mt-4 lg:inline-block lg:mt-0 text-grey-dark hover:text-grey-darker no-underline mr-6"
+        >
+          Service
+        </a>
+        <a
+          href="#responsive-header"
+          class="block mt-4 lg:inline-block lg:mt-0 text-grey-dark hover:text-grey-darker no-underline mr-6"
+        >
+          Community
+        </a>
+        <a
+          href="#/About/index.php"
+          class="block mt-4 lg:inline-block lg:mt-0 text-grey-dark hover:text-grey-darker no-underline mr-6"
+        >
+          About Us
+        </a>
+        <a
+          href="#/Registry/login.php"
+          class="block mt-4 lg:inline-block lg:mt-0 text-grey-dark hover:text-grey-darker no-underline mr-6"
+        >
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
 {% endblock header %}

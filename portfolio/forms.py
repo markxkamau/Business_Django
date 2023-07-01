@@ -21,6 +21,7 @@ class TeamForm(forms.Form):
 
 
 class AccountForm(forms.Form):
+    name = forms.CharField(widget=forms.TextInput)
     youtube = forms.URLField()
     twitter = forms.URLField()
     tiktok = forms.URLField()
@@ -28,23 +29,23 @@ class AccountForm(forms.Form):
     instagram = forms.URLField()
     linkedin = forms.URLField()
 
-class PersonForm(forms.ModelForm):
-    class Meta:
-        model = person
-        fields = ['first_name', 'last_name', 'age', 'email', 'contact', 'location', 'title']
-# class PersonForm(forms.Form):
-#     first_name = forms.CharField()
-#     last_name = forms.CharField()
-#     user_name = forms.CharField()
-#     user_image = forms.CharField()
-#     age = forms.IntegerField()
-#     email = forms.EmailField()
-#     contact = forms.IntegerField()
-#     location = forms.CharField()
-#     title = forms.CharField()
-#     user_task = forms.ModelMultipleChoiceField(queryset=task.objects.all(),blank=True, required=False)
-#     user_team = forms.ModelChoiceField(queryset=team.objects.all(), empty_label="select", blank=True, required=False)
-#     user_account = forms.ModelChoiceField(queryset=account.objects.all(), empty_label="select", blank=True, required=False)
+# class PersonForm(forms.ModelForm):
+#     class Meta:
+#         model = person
+#         fields = ['first_name', 'last_name', 'age', 'email', 'contact', 'location', 'title']
+class PersonForm(forms.Form):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    user_name = forms.CharField()
+    user_image = forms.CharField()
+    age = forms.IntegerField()
+    email = forms.EmailField()
+    contact = forms.IntegerField()
+    location = forms.CharField()
+    title = forms.CharField()
+    Tasks = forms.ModelMultipleChoiceField(queryset=task.objects.all(),blank=True, required=False)
+    Team = forms.ModelChoiceField(queryset=team.objects.all(), empty_label="select", blank=True, required=False)
+    Account = forms.ModelChoiceField(queryset=account.objects.all(), empty_label="select", blank=True, required=False)
 
 
 class FeedbackForm(forms.Form):
