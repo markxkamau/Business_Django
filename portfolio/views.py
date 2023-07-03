@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import (
     PersonForm,
     TaskForm,
@@ -16,42 +16,32 @@ from .models import (
 
 
 def create_user(request):
-    object = PersonForm()
+    form = PersonForm()
     if request.method == 'POST':
-        object = PersonForm(request.POST)
-        if object.is_valid():
-            # person.objects.create()
-
-            # Task = task.objects.create(object.Tasks)
-
-            # person.Tasks.add(Task)
-
-            # Team = team.objects.create(object.Team)
-
-            # person.Team.add(Team)
-            # Account = account.objects.create(object.Account)
-
-            # person.Account.add(Account)
-            person.objects.create(**object.cleaned_data)
-        else:
-            object = PersonForm()
+        form = PersonForm(request.POST)
+        if form.is_valid():
+            person_obj = person.objects.create(**form.cleaned_data)
+            return redirect('/portfolio/user/{}'.format(person_obj.id))
     obj = {
-        "object": object
+        "object": form
     }
     return render(request, "User/create_user.html", obj)
 
 
 def user_detail(request, id):
     object = person.objects.get(id=id)
-    tasks = object.Tasks.all()
-    team_data = team.objects.get(id=object.Team.id)
-    team_members = person.objects.filter(Team=team_data)
+    tasks = task.objects.filter(person=object)
+    accounts = account.objects.filter(person = object)
+    # team_data = team.objects.get(id=object.Team.id)
+    # team_members = person.objects.filter(Team=team_data)
     obj = {
         "object": object,
         "task": tasks,
-        "team": team_data,
-        "members": team_members
+        "account": accounts
+        # "team": team_data,
+        # "members": team_members
     }
+    print(accounts)
     return render(request, "User/user_detail.html", obj)
 
 
@@ -72,7 +62,7 @@ def task_detail(request, id):
     obj = {
         "object": object
     }
-    return render(request, "Task/task_detail.html", obj)
+    return render(request, "Task/task_details.html", obj)
 
 
 def create_team(request):

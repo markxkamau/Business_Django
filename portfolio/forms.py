@@ -4,48 +4,35 @@ from .models import (
     task,
     team,
     account,
-    person, 
+    person,
     feedback
 )
+
 
 class TaskForm(forms.Form):
     title = forms.CharField()
     content = forms.CharField(widget=forms.Textarea(attrs={
-        'type':'text'
+        'type': 'text'
     }))
+    person = forms.ModelChoiceField(queryset=person.objects.all())
 
 
 class TeamForm(forms.Form):
-    name = forms.CharField(widget=forms.TextInput)
-    image = forms.CharField(label="Image Collection Name")
+    team_name = forms.CharField(widget=forms.TextInput)
+    team_images = forms.CharField(widget=forms.TextInput)
+    members = forms.ModelMultipleChoiceField(queryset=person.objects.all())
 
 
 class AccountForm(forms.Form):
-    name = forms.CharField(widget=forms.TextInput)
-    youtube = forms.URLField()
-    twitter = forms.URLField()
-    tiktok = forms.URLField()
-    facebook = forms.URLField()
-    instagram = forms.URLField()
-    linkedin = forms.URLField()
+    account_type = forms.CharField(max_length=100)
+    account_value = forms.URLField()
+    person = forms.ModelChoiceField(queryset=person.objects.all())
 
-# class PersonForm(forms.ModelForm):
-#     class Meta:
-#         model = person
-#         fields = ['first_name', 'last_name', 'age', 'email', 'contact', 'location', 'title']
-class PersonForm(forms.Form):
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    user_name = forms.CharField()
-    user_image = forms.CharField()
-    age = forms.IntegerField()
-    email = forms.EmailField()
-    contact = forms.IntegerField()
-    location = forms.CharField()
-    title = forms.CharField()
-    Tasks = forms.ModelMultipleChoiceField(queryset=task.objects.all(),blank=True, required=False)
-    Team = forms.ModelChoiceField(queryset=team.objects.all(), empty_label="select", blank=True, required=False)
-    Account = forms.ModelChoiceField(queryset=account.objects.all(), empty_label="select", blank=True, required=False)
+
+class PersonForm(forms.ModelForm):
+    class Meta:
+        model = person
+        fields = '__all__'
 
 
 class FeedbackForm(forms.Form):
@@ -53,7 +40,7 @@ class FeedbackForm(forms.Form):
     customer_email = forms.EmailField()
     subject = forms.CharField(max_length=20)
     message = forms.CharField(widget=forms.Textarea(attrs={
-        'type':'text'
+        'type': 'text'
     }))
 
 
@@ -67,4 +54,3 @@ class Team_Image_Form(forms.Form):
     collection = forms.ModelChoiceField(
         queryset=team.objects.all(), label="Team")
     image = forms.ImageField()
-
