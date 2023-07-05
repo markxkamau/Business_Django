@@ -4,14 +4,18 @@ from .forms import (
     TaskForm,
     TeamForm,
     AccountForm,
-    FeedbackForm
+    FeedbackForm,
+    Person_Image_Form,
+    Team_Image_Form
 )
 from .models import (
     person,
     task,
     team,
     account,
-    feedback
+    feedback,
+    person_image,
+    team_image
 )
 
 
@@ -20,29 +24,44 @@ def create_user(request):
     if request.method == 'POST':
         form = PersonForm(request.POST)
         if form.is_valid():
-            person_obj = person.objects.create(**form.cleaned_data)
-            return redirect('/portfolio/user/{}'.format(person_obj.id))
+            person.objects.create(**form.cleaned_data)
+            return redirect('/portfolio/create_account/')
     obj = {
         "object": form
     }
     return render(request, "User/create_user.html", obj)
 
-
+# Homepage
 def user_detail(request, id):
     object = person.objects.get(id=id)
     tasks = task.objects.filter(person=object)
-    accounts = account.objects.filter(person = object)
-    # team_data = team.objects.get(id=object.Team.id)
-    # team_members = person.objects.filter(Team=team_data)
+    accounts = account.objects.filter(person=object)
     obj = {
         "object": object,
         "task": tasks,
         "account": accounts
-        # "team": team_data,
-        # "members": team_members
     }
-    print(accounts)
     return render(request, "User/user_detail.html", obj)
+
+# Community link
+def user_team_detail(request, id):
+    user = person.objects.get(id=id)
+    teams = team.objects.filter(members = user)
+    obj ={
+        "object": user,
+        "team":teams
+    }
+    return render(request, "Team/team_detail.html", obj)
+
+# Services Link
+def user_task_detail(request, id):
+    user = person.objects.get(id=id)
+    tasks = task.objects.filter(person = user)
+    obj = {
+        "object":tasks
+    }
+
+    return render(request, "Task/task_detail.html", obj)
 
 
 def create_task(request):
@@ -62,7 +81,7 @@ def task_detail(request, id):
     obj = {
         "object": object
     }
-    return render(request, "Task/task_details.html", obj)
+    return render(request, "Task/task_detail.html", obj)
 
 
 def create_team(request):
@@ -70,7 +89,9 @@ def create_team(request):
     if request.method == 'POST':
         object = TeamForm(request.POST)
         if object.is_valid():
-            team.objects.create(**object.cleaned_data)
+            team_obj = object.save()  # Save the form and retrieve the Team object
+            # save_instance(object, team_obj)  # Save the many-to-many relationships            # return redirect('team_detail', pk=team_obj.pk)  # Redirect to the team detail page
+            # team.objects.create(**object.cleaned_data)
     obj = {
         "object": object
     }
@@ -83,6 +104,7 @@ def create_account(request):
         object = AccountForm(request.POST)
         if object.is_valid():
             account.objects.create(**object.cleaned_data)
+            return redirect('/portfolio/create_task')
     obj = {
         "object": object
     }

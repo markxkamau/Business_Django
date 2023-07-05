@@ -44,6 +44,7 @@ class team_person(models.Model):
 class task(models.Model):
     title = models.CharField(max_length=256, default="default")
     content = models.TextField()
+    price = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
     person = models.ForeignKey(person, on_delete=models.CASCADE)
 
     def __str__(self):

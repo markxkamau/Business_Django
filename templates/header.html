@@ -6,7 +6,7 @@
     <div class="flex items-center flex-no-shrink text-white mr-6">
       <h1 class="text-black text-2xl p-2 align-middle font-sans relative pl-8">
         <a
-          href=" {% url 'user_detail' id=1 %}"
+          href=" {% url 'user_detail' id=object.id %}"
           class="no-underline text-black flex"
         >
           <img
@@ -23,14 +23,14 @@
     >
       <div class="lg:flex-grow">
         <a
-          href="#"
+          href="{%url 'user_task_detail' id=object.id%}"
           class="block mt-4 lg:inline-block lg:mt-0 text-grey-dark hover:text-grey-darker no-underline mr-6"
         >
           Services
         </a>
         <a
-          href="#responsive-header"
-          class="block mt-4 lg:inline-block lg:mt-0 text-grey-dark hover:text-grey-darker no-underline mr-6"
+          href="{%url 'user_team_detail' id=object.id%}"
+          class="btasklock mt-4 lg:inline-block lg:mt-0 text-grey-dark hover:text-grey-darker no-underline mr-6"
         >
           Community
         </a>

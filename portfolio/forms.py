@@ -14,13 +14,16 @@ class TaskForm(forms.Form):
     content = forms.CharField(widget=forms.Textarea(attrs={
         'type': 'text'
     }))
+    price = forms.DecimalField(decimal_places=2, max_digits=10)
     person = forms.ModelChoiceField(queryset=person.objects.all())
 
 
-class TeamForm(forms.Form):
-    team_name = forms.CharField(widget=forms.TextInput)
-    team_images = forms.CharField(widget=forms.TextInput)
+class TeamForm(forms.ModelForm):
     members = forms.ModelMultipleChoiceField(queryset=person.objects.all())
+
+    class Meta:
+        model = team
+        fields = ['team_name', 'team_images', 'members']
 
 
 class AccountForm(forms.Form):
@@ -46,7 +49,7 @@ class FeedbackForm(forms.Form):
 
 class Person_Image_Form(forms.Form):
     collection = forms.ModelChoiceField(
-        queryset=person.objects.all())
+        queryset=person.objects.all(), label="Person")
     image = forms.ImageField()
 
 
