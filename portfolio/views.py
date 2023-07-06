@@ -27,7 +27,7 @@ def create_user(request):
             person.objects.create(**form.cleaned_data)
             return redirect('/portfolio/create_account/')
     obj = {
-        "object": form
+        "form": form
     }
     return render(request, "User/create_user.html", obj)
 
@@ -47,9 +47,10 @@ def user_detail(request, id):
 def user_team_detail(request, id):
     user = person.objects.get(id=id)
     teams = team.objects.filter(members = user)
+
     obj ={
         "object": user,
-        "team":teams
+        "team":teams,
     }
     return render(request, "Team/team_detail.html", obj)
 
@@ -58,7 +59,8 @@ def user_task_detail(request, id):
     user = person.objects.get(id=id)
     tasks = task.objects.filter(person = user)
     obj = {
-        "object":tasks
+        "object":user,
+        "task":tasks
     }
 
     return render(request, "Task/task_detail.html", obj)
