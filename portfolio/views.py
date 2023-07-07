@@ -32,6 +32,8 @@ def create_user(request):
     return render(request, "User/create_user.html", obj)
 
 # Homepage
+
+
 def user_detail(request, id):
     object = person.objects.get(id=id)
     tasks = task.objects.filter(person=object)
@@ -44,23 +46,30 @@ def user_detail(request, id):
     return render(request, "User/user_detail.html", obj)
 
 # Community link
+
+
 def user_team_detail(request, id):
     user = person.objects.get(id=id)
-    teams = team.objects.filter(members = user)
+    teams = team.objects.filter(members=user)
 
-    obj ={
+    obj = {
         "object": user,
-        "team":teams,
+        "team": teams,
+        "account": account.objects.filter(person=user)
+
     }
     return render(request, "Team/team_detail.html", obj)
 
 # Services Link
+
+
 def user_task_detail(request, id):
     user = person.objects.get(id=id)
-    tasks = task.objects.filter(person = user)
+    tasks = task.objects.filter(person=user)
     obj = {
-        "object":user,
-        "task":tasks
+        "object": user,
+        "task": tasks,
+        "account": account.objects.filter(person=user)
     }
 
     return render(request, "Task/task_detail.html", obj)
