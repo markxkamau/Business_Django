@@ -33,6 +33,7 @@ class AccountForm(forms.Form):
 
 
 class PersonForm(forms.ModelForm):
+    image = forms.ImageField(required=False)  # Add the image field
     class Meta:
         model = person
         fields = '__all__'
@@ -49,11 +50,11 @@ class FeedbackForm(forms.Form):
 
 class Person_Image_Form(forms.Form):
     collection = forms.ModelChoiceField(
-        queryset=person.objects.all(), label="Person")
+        queryset=person.objects.all())
     image = forms.ImageField()
 
 
 class Team_Image_Form(forms.Form):
     collection = forms.ModelChoiceField(
-        queryset=team.objects.all(), label="Team")
+        queryset=team.objects.all())
     image = forms.ImageField()

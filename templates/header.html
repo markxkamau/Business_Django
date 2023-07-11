@@ -22,18 +22,23 @@
       class="w-full block text-right flex-grow lg:flex lg:items-center lg:w-auto"
     >
       <div class="lg:flex-grow">
+        {% if task %}
         <a
           href="{%url 'user_task_detail' id=object.id%}"
           class="block mt-4 lg:inline-block lg:mt-0 text-grey-dark hover:text-grey-darker no-underline mr-6"
         >
           Services
         </a>
+        {% else %} {% endif %} 
+        {% if team %}
         <a
           href="{%url 'user_team_detail' id=object.id%}"
           class="btasklock mt-4 lg:inline-block lg:mt-0 text-grey-dark hover:text-grey-darker no-underline mr-6"
         >
           Community
         </a>
+        {% else %} {% endif %}
+
         <a
           href="#/About/index.php"
           class="block mt-4 lg:inline-block lg:mt-0 text-grey-dark hover:text-grey-darker no-underline mr-6"

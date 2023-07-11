@@ -24,7 +24,27 @@ def create_user(request):
     if request.method == 'POST':
         form = PersonForm(request.POST)
         if form.is_valid():
-            person.objects.create(**form.cleaned_data)
+            person_instance = person(
+                first_name=form.cleaned_data['first_name'],
+                last_name=form.cleaned_data['last_name'],
+                user_name=form.cleaned_data['user_name'],
+                age=form.cleaned_data['age'],
+                email=form.cleaned_data['email'],
+                contact=form.cleaned_data['contact'],
+                location=form.cleaned_data['location'],
+                title=form.cleaned_data['title']
+            )
+            person_instance.save()
+
+            # Create a person_image instance
+            person_image_instance = person_image(collection=person_instance)
+
+            # Assign the uploaded image to the person_image instance
+            person_image_instance.image = form.cleaned_data['image']
+
+            # Save the person_image instance
+            person_image_instance.save()
+            # person.objects.create(**form.cleaned_data)
             return redirect('/portfolio/create_account/')
     obj = {
         "form": form
@@ -38,10 +58,15 @@ def user_detail(request, id):
     object = person.objects.get(id=id)
     tasks = task.objects.filter(person=object)
     accounts = account.objects.filter(person=object)
+    teams = team.objects.filter(members=object)
+
+    # images = person_image.objects.filter(collection = object)
     obj = {
         "object": object,
         "task": tasks,
-        "account": accounts
+        "account": accounts,
+        "team": teams
+        # "images":images
     }
     return render(request, "User/user_detail.html", obj)
 
@@ -51,10 +76,12 @@ def user_detail(request, id):
 def user_team_detail(request, id):
     user = person.objects.get(id=id)
     teams = team.objects.filter(members=user)
+    tasks = task.objects.filter(person=user)
 
     obj = {
         "object": user,
         "team": teams,
+        "task": tasks,
         "account": account.objects.filter(person=user)
 
     }
@@ -66,9 +93,12 @@ def user_team_detail(request, id):
 def user_task_detail(request, id):
     user = person.objects.get(id=id)
     tasks = task.objects.filter(person=user)
+    teams = team.objects.filter(members=user)
+
     obj = {
         "object": user,
         "task": tasks,
+        "team": teams,
         "account": account.objects.filter(person=user)
     }
 
