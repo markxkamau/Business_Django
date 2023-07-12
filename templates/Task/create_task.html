@@ -1,5 +1,19 @@
 {% extends "base.html" %}
+{% block header %}
+<header class="w-full font-sans">
+  <nav
+    class="container mx-auto flex items-center justify-between flex-wrap py-3"
+  >
+    <div class="flex items-center flex-no-shrink text-white mr-6">
+      <h1 class="text-black text-2xl p-2 align-middle font-sans relative pl-8">
+    
 
+      </h1>
+    </div>
+
+  </nav>
+</header>
+{% endblock header %}
 {% block form %}
 <div class="min-h-screen flex flex-col items-center justify-center">
   <div
@@ -27,8 +41,14 @@
         name="Submit"
         type="submit"
       >
-        Submit
-      </button></form>
+        Add
+      </button>
+      <a
+      href = "{% url 'create_team'  %}"
+        class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-red-600 hover:bg-red-700 rounded py-2 w-full transition duration-150 ease-in"
+      >
+        Next
+      </a></form>
       </div>
       </div>
 {% endblock form %}

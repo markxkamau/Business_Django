@@ -4,6 +4,8 @@ from .models import (
     feedback,
     account,
     task,
-    team
+    team, 
+    person_image,
+    team_image
 )
-admin.site.register([task, team, account, person, feedback])
+admin.site.register([task, team, account, person, feedback, person_image, team_image])
